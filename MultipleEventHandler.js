@@ -53,6 +53,13 @@ ngyv.MultipleEventHandler = function(options) {
 				multipleEvents.length : _.turnedOffHandler[elementIdentifier].multipleEventsStr;
 	};
 
+	_.setLastIndexTurnedOff = function(elementIdentifier, multipleEvents, lastIndex) {
+		var multipleEventsStr = multipleEvents.toString();
+		if(_.turnedOffHandler[elementIdentifier].multipleEventsStr === undefined || _.turnedOffHandler[elementIdentifier].multipleEventsStr == null || _.turnedOffHandler[elementIdentifier].multipleEventsStr > lastIndex) {
+			_.turnedOffHandler[elementIdentifier].multipleEventsStr = lastIndex;
+		}
+	};
+
 	_.getMultipleEventHandler = function(elementIdentifier, multipleEvents) {
 		var multipleEventsStr = multipleEvents.toString();
 		return _.multipleEventHandlers[elementIdentifier].multipleEventsStr;
@@ -66,6 +73,8 @@ ngyv.MultipleEventHandler = function(options) {
 				for(var i = indexOfEvent + 1; i < lastIndex; i++){
 					$(elementIdentifier).off(multipleEvents[i], _.getMultipleEventHandler(elementIdentifier, multipleEvents)).on(multipleEvents[i], _.doNothingHandler);
 				}
+
+				_.setLastIndexTurnedOff(elementIdentifier, multipleEvents, lastIndex);
 			}
 			
 			actualHandler(e);
