@@ -37,16 +37,6 @@ ngyv.MultipleEventHandler = function(options) {
 		_.multipleEventHandlers[elementIdentifier].multipleEventsStr = eventHandler;
 	};
 
-	_.addToTurnedOffHandler = function(elementIdentifier, multipleEvents, lastIndex) {
-		if(_.turnedOffHandler[elementIdentifier] === undefined || _.turnedOffHandler[elementIdentifier] == null) {
-			_.multipleEventHandlers[elementIdentifier] = {};
-		}
-		var multipleEventsStr = multipleEvents.toString();
-		if(parseInt(_.turnedOffHandler[elementIdentifier].multipleEventsStr) > lastIndex){
-			_.turnedOffHandler[elementIdentifier].multipleEventsStr = lastIndex;
-		}
-	};
-
 	_.getLastIndexTurnedOff = function(elementIdentifier, multipleEvents) {
 		var multipleEventsStr = multipleEvents.toString();
 		return (_.turnedOffHandler[elementIdentifier].multipleEventsStr === undefined || _.turnedOffHandler[elementIdentifier].multipleEventsStr == null) ? 
