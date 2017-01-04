@@ -82,7 +82,7 @@ ngyv.MenuFocusoutHandler = function(options) {
 				if(!options.hasOwnProperty(key) || options[key] == null) {
 					continue;
 				}
-				self.key = options[key];
+				self[key] = options[key];
 			}
 		}
 		
